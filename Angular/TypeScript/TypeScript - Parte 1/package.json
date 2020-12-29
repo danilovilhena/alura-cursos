@@ -1,0 +1,15 @@
+{
+  "name": "typescript-parte-1",
+  "version": "1.0.0",
+  "description": "Primeira parte do curso de TypeScript da Alura",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc",
+    "start": "tsc -w"
+  },
+  "author": "Danilo Vilhena",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}

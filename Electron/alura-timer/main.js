@@ -3,15 +3,21 @@ const data = require('./data')
 const template = require('./template')
 
 let tray = null
+let mainWindow = null;
+
 app.on('ready', () => {
     console.log('Evento ready disparado!')
-    let mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 600,
         height: 400
     })
     tray = new Tray(__dirname + '/app/img/icon-tray.png')
     let trayMenu = Menu.buildFromTemplate(template.geraTrayTemplate(mainWindow))
     tray.setContextMenu(trayMenu)
+
+    let templateMenu = template.geraMenuPrincipalTemplate(app)
+    let menuPrincipal = Menu.buildFromTemplate(templateMenu)
+    Menu.setApplicationMenu(menuPrincipal);
 
     mainWindow.loadURL(`file://${__dirname}/app/index.html`)
 })
@@ -44,3 +50,9 @@ ipcMain.on('curso-parado', (event, curso, tempoEstudado) => {
     console.log(`O curso ${curso} foi estudado por ${tempoEstudado}`);
     data.salvaDados(curso,tempoEstudado);
 })
+
+ipcMain.on('curso-adicionado', (event, novoCurso) => {
+    let novoTemplate = template.adicionaCursoNoTray(novoCurso, mainWindow);
+    let novoTrayMenu = Menu.buildFromTemplate(novoTemplate);
+    tray.setContextMenu(novoTrayMenu);
+});

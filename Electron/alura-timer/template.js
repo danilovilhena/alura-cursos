@@ -44,7 +44,11 @@ module.exports = {
             },
             {label: 'Sobre',
                 submenu: [
-                    { label: 'Sobre o Alura Timer',click: () => { ipcMain.emit('abrir-janela-sobre'); } }
+                    { 
+                        label: 'Sobre o Alura Timer',
+                        accelerator: 'CommandOrControl+I',
+                        click: () => { ipcMain.emit('abrir-janela-sobre'); }
+                    }
                 ]
             }
         ];

@@ -5,12 +5,17 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-mac": "cd .. && electron-packager alura-timer/ alura-timer --platform=darwin --arch=x64 --icon=alura-timer/icons/icon.icns",
+    "build-win": "cd .. && electron-packager alura-timer/ alura-timer --platform=win32 --arch=x64 --icon=alura-timer/icons/icon.ico",
+    "build-linux": "cd .. && electron-packager alura-timer/ alura-timer --platform=linux --arch=x64 --icon=alura-timer/icons/icon.png",
+    "build-all": "cd .. && electron-packager alura-timer/ alura-timer --platform=darwin,linux,win32 --arch=x64 --icon=alura-timer/icons/icon"
   },
   "author": "Danilo Vilhena",
   "license": "ISC",
   "dependencies": {
     "electron": "^1.6.1",
+    "electron-packager": "^15.2.0",
     "jsonfile-promised": "0.0.1",
     "moment": "^2.17.1"
   }
